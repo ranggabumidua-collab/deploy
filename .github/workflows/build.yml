@@ -3,7 +3,7 @@ name: Pabrik APK Nganjuk
 on:
   push:
     branches: [ "main", "master" ]
-  workflow_dispatch: # Biar lo bisa pencet tombol build manual
+  workflow_dispatch:
 
 jobs:
   build:
@@ -12,6 +12,9 @@ jobs:
     steps:
     - name: Sedot Kode dari Repo Lo
       uses: actions/checkout@v4
+
+    - name: Buka Resleting Kardus ZIP (Hack Nganjuk)
+      run: unzip Markas-Nganjuk-Project.zip
 
     - name: Siapin Mesin Java (JDK 17)
       uses: actions/setup-java@v3
@@ -23,11 +26,11 @@ jobs:
       uses: gradle/gradle-build-action@v2
 
     - name: Rakit APK Sekarang!
+      working-directory: ./Pabrik-APK-Nganjuk
       run: gradle assembleDebug
 
     - name: Bungkus dan Kirim APK ke CEO
       uses: actions/upload-artifact@v4
       with:
         name: Markas-Nganjuk-Pro-APK
-        path: app/build/outputs/apk/debug/*.apk
-        
+        path: Pabrik-APK-Nganjuk/app/build/outputs/apk/debug/*.apk
