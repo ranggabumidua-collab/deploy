@@ -13,7 +13,7 @@ jobs:
     - name: Sedot Kode dari Repo Lo
       uses: actions/checkout@v4
 
-    - name: Buka Resleting Kardus Nganjuk (Presisi Tinggi)
+    - name: Buka Resleting Kardus Nganjuk
       run: unzip nganjuk.zip
 
     - name: Siapin Mesin Java 21 
@@ -25,14 +25,17 @@ jobs:
     - name: Setup Gradle (Otomatis Paling Baru)
       uses: gradle/actions/setup-gradle@v3
       with:
-        gradle-version: 'current' # NAH INI DIA! GAK USAH TEBAK ANGKA LAGI BOSS!
+        gradle-version: 'current'
 
-    - name: Rakit APK Sekarang!
-      working-directory: ./Pabrik-APK-Nganjuk
-      run: gradle assembleDebug
+    - name: Cari Pabrik & Rakit APK (Smart Radar)
+      run: |
+        PABRIK_DIR=$(dirname $(find . -name "settings.gradle" | head -n 1))
+        echo "Wah Ketemu nih Pabriknya di: $PABRIK_DIR"
+        cd $PABRIK_DIR
+        gradle assembleDebug
 
     - name: Bungkus dan Kirim APK ke CEO
       uses: actions/upload-artifact@v4
       with:
         name: Markas-Nganjuk-2026-APK
-        path: Pabrik-APK-Nganjuk/app/build/outputs/apk/debug/*.apk
+        path: ./**/app/build/outputs/apk/debug/*.apk
