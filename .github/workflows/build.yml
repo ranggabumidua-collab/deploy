@@ -14,18 +14,18 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Buka Resleting Kardus Nganjuk (Presisi Tinggi)
-      run: unzip nganjuk.zip # NAH INI DIA! FOKUS KE 1 FILE DOANG!
+      run: unzip nganjuk.zip
 
-    - name: Siapin Mesin Java 21 (Syarat Wajib Gradle 9)
+    - name: Siapin Mesin Java 21 
       uses: actions/setup-java@v4
       with:
         java-version: '21'
         distribution: 'temurin'
 
-    - name: Setup Gradle 9.1 (Mesin 2026)
+    - name: Setup Gradle (Otomatis Paling Baru)
       uses: gradle/actions/setup-gradle@v3
       with:
-        gradle-version: '9.1'
+        gradle-version: 'current' # NAH INI DIA! GAK USAH TEBAK ANGKA LAGI BOSS!
 
     - name: Rakit APK Sekarang!
       working-directory: ./Pabrik-APK-Nganjuk
