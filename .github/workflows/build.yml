@@ -13,8 +13,11 @@ jobs:
     - name: Sedot Kode dari Repo Lo
       uses: actions/checkout@v4
 
-    - name: Buka Resleting Kardus ZIP (Hack Nganjuk)
-      run: unzip Markas-Nganjuk-Project.zip
+    - name: Cek Isi Repo (Intelijen)
+      run: ls -la
+
+    - name: Buka Resleting Kardus ZIP (Sapu Jagat)
+      run: unzip *.zip
 
     - name: Siapin Mesin Java (JDK 17)
       uses: actions/setup-java@v3
@@ -34,3 +37,4 @@ jobs:
       with:
         name: Markas-Nganjuk-Pro-APK
         path: Pabrik-APK-Nganjuk/app/build/outputs/apk/debug/*.apk
+        
